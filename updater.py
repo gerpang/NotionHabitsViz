@@ -2,6 +2,7 @@ import pandas as pd
 import json
 from decouple import config
 import requests
+import datetime
 
 class Updater():
     def __init__(self):
@@ -10,19 +11,21 @@ class Updater():
         self.integration_token =  config("INTEGRATION_TOKEN")
         self.DATABASE_ID = config("DATABASE_ID")
         self.database_url = self.NOTION_URL + self.DATABASE_ID + "/query"
+        self.today = datetime.datetime.strftime(datetime.datetime.now(), "%Y-%m-%d")
+        self.month_ago = datetime.datetime.strftime(datetime.datetime.now() - datetime.timedelta(30), "%Y-%m-%d")
         self.data ={
       "filter": {
         "and": [
           {
             "property": "Date",
                     "date": {
-                        "after": "2021-05-30"
+                        "after": self.month_ago
                     }
           },
           {
                     "property": "Date",
                     "date": {
-                        "on_or_before": "2021-09-01"
+                        "on_or_before": self.today
                     }
                 }
             ]
@@ -58,9 +61,13 @@ class Updater():
                 output_dic[col_name] = col_status
         return {day['properties']['Date']['date']['start']: output_dic}
 
-    def save_data(self, new_data, savefilepath):
+    def get_data(self, savefilepath):
         with open(savefilepath, 'r') as f:
             data = json.load(f)
+        return data
+
+    def save_data(self, new_data, savefilepath):
+        data = self.get_data(savefilepath)
         data.update(new_data)
         with open(savefilepath, 'w') as f:
             json.dump(data, f)
