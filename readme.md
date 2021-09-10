@@ -3,15 +3,14 @@ I use a daily Habits Tracker on Notion. Previously I used Notion's export to csv
 
 In this repo, I use the Notion API to access the data directly, then analyze it using pandas and visualize it on Streamlit. 
 
-Because the Notion API has a limit of 100 items which can be queried at any time, I maintain a local copy of the data and update it with the latest 100.
+Because the Notion API has a limit of 100 items which can be queried at any time, I maintain a local copy of the data and update it with the latest 100. This will be saved as a json file in a `/data` folder.
 
 # Roadmap
-- Use of 'habit categories' to compare how different aspects are proceeding (e.g. Producitivity, Wellness) - subplots?
+- Use of 'habit categories' to compare how different aspects are proceeding (e.g. Producitivity, Wellness) - maybe in subplots
 - Indication of when there were changes in the habits (e.g. Swapped out some habits for another) - vlines?
 - Sidebar
     - Select Month to view
     - Select Date Range to view
-- embed charts back into notion? push to heroku?
 
 # Set Up
 You will need

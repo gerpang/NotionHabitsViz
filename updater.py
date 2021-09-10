@@ -1,8 +1,8 @@
-import pandas as pd
 import json
 from decouple import config
 import requests
 import datetime
+import os
 
 class Updater():
     def __init__(self):
@@ -62,8 +62,12 @@ class Updater():
         return {day['properties']['Date']['date']['start']: output_dic}
 
     def get_data(self, savefilepath):
-        with open(savefilepath, 'r') as f:
-            data = json.load(f)
+        if os.path.exists(savefilepath):
+            with open(savefilepath, 'r') as f:
+                data = json.load(f)
+        else:
+            os.makedirs(savefilepath)
+            data = {}
         return data
 
     def save_data(self, new_data, savefilepath):
