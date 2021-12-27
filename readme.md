@@ -9,8 +9,11 @@ Because the Notion API has a limit of 100 items which can be queried at any time
 - Use of 'habit categories' to compare how different aspects are proceeding (e.g. Producitivity, Wellness) - maybe in subplots
 - Indication of when there were changes in the habits (e.g. Swapped out some habits for another) - vlines?
 - Sidebar
-    - Select Month to view
-    - Select Date Range to view
+    - (DONE) Select Type of View
+- Types of Views
+    - (in progress) Entire Year in Review
+    - (DONE) Select Several Months to view
+    - (DONE) Select a specific Month to view
 
 # Set Up
 You will need
@@ -23,7 +26,10 @@ Keep these secret in an `.env` file, like this:
     database_id=YOUR_DATABASE_ID
     integration_token=YOUR_INTEGRATION_TOKEN
 ```
+# To Initialize
+Run `streamlit run app.py`
 
 ## References
 * [Notion API](https://developers.notion.com/reference/post-database-query)
 * [Productivity Tracking with the Notion API and Python](https://towardsdatascience.com/productivity-tracking-with-the-notion-api-and-python-f5f866fe11d8)
+* [For multi-'tab' Streamlit page](https://towardsdatascience.com/creating-multipage-applications-using-streamlit-efficiently-b58a58134030)
